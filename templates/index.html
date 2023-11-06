@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+     <div class="row">
+      <!--    <div class="text-center">
+          <img class="img-fluid rounded rounded-5" src="images/banner.jpg">
+        </div>
+      </div> -->
+      <h3 class="mt-3">Project description</h3>
+        <p>This dataset provides a comprehensive array of features relevant to heart health and lifestyle choices, encompassing patient-specific details such as age, gender, cholesterol levels, blood pressure, heart rate, and indicators like diabetes, family history, smoking habits, obesity, and alcohol consumption. Additionally, lifestyle factors like exercise hours, dietary habits, stress levels, and sedentary hours are included. Medical aspects comprising previous heart problems, medication usage, and triglyceride levels are considered.</p>
+        <p>Socioeconomic aspects such as income and geographical attributes like country, continent, and hemisphere are incorporated.</p>
+        <p>The dataset, consisting of 8763 records from patients around the globe, culminates in a crucial binary classification feature denoting the presence or absence of a heart attack risk, providing a comprehensive resource for predictive analysis and research in cardiovascular health.</p>
+        <p>This generate dataset with artificial records helps to balance biased datasets and improve overall model accuracy. </p>
+        <strong>Source: <a href="https://gretel.ai/blog/reducing-ai-bias-with-synthetic-data">🌍Reducing gender bias with synthetic data🌍</a></strong>
+      <h3 class="mt-3">Dataset Source</h3>
+        <a href="https://www.kaggle.com/datasets/iamsouravbanerjee/heart-attack-prediction-dataset/">🌍 Original source and examples, Kaggle website.🌍</a>
+      <h3 class="mt-3">Dataset description</h3>
+          <ul style="list-style-type:circle">
+            <li><b>Patient ID</b> - Unique identifier for each patient</li>
+            <li><b>Age</b> - Age of the patient</li>
+            <li><b>Sex</b> - Gender of the patient (Male/Female)</li>
+            <li><b>Cholesterol</b> - Cholesterol levels of the patient</li>
+            <li><b>Blood Pressure</b> - Blood pressure of the patient (systolic/diastolic)</li>
+            <li><b>Heart Rate</b> - Heart rate of the patient</li>
+            <li><b>Diabetes</b> - Whether the patient has diabetes (Yes/No)</li>
+            <li><b>Family History</b> - Family history of heart-related problems (1: Yes, 0: No)</li>
+            <li><b>Smoking</b> - Smoking status of the patient (1: Smoker, 0: Non-smoker)</li>
+            <li><b>Obesity</b> - Obesity status of the patient (1: Obese, 0: Not obese)</li>
+            <li><b>Alcohol Consumption</b> - Level of alcohol consumption by the patient (None/Light/Moderate/Heavy)</li>
+            <li><b>Exercise Hours Per Week</b> - Number of exercise hours per week</li>
+            <li><b>Diet</b> - Dietary habits of the patient (Healthy/Average/Unhealthy)</li>
+            <li><b>Previous Heart Problems</b> - Previous heart problems of the patient (1: Yes, 0: No)</li>
+            <li><b>Medication Use</b> - Medication usage by the patient (1: Yes, 0: No)</li>
+            <li><b>Stress Level</b> - Stress level reported by the patient (1-10)</li>
+            <li><b>Sedentary Hours Per Day</b> - Hours of sedentary activity per day</li>
+            <li><b>Income</b> - Income level of the patient</li>
+            <li><b>BMI</b> - Body Mass Index (BMI) of the patient</li>
+            <li><b>Triglycerides</b> - Triglyceride levels of the patient</li>
+            <li><b>Physical Activity Days Per Week</b> - Days of physical activity per week</li>
+            <li><b>Sleep Hours Per Day</b> - Hours of sleep per day</li>
+            <li><b>Country</b> - Country of the patient</li>
+            <li><b>Continent</b> - Continent where the patient resides</li>
+            <li><b>Hemisphere</b> - Hemisphere where the patient resides</li>
+            <li><b>Heart Attack Risk</b> - Presence of heart attack risk (1: Yes, 0: No)</li>
+          </ul>
+      </p>
+    </div>
+  {% endblock content %}
