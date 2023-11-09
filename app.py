@@ -50,7 +50,7 @@ def query(field, value):
     data = data.to_json(orient="records")
 
 # WEB PAGE ROUTES
-@app.route("/index/")
+@app.route("/")
 def index():
     return render_template("index.html")
     # return render_template("index.html", title="Pt2 - Index")
