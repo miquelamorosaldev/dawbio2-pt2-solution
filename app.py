@@ -4,11 +4,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import plotly
 import plotly.express as px
-import seaborn as sns
-import data
-import base64
-from io import BytesIO
 import json
+# Our modules.
+import data
+from mod_plots import demo_plot
 
 app = Flask(__name__)
 api = Api(app)
@@ -53,23 +52,23 @@ def query(field, value):
 @app.route("/")
 def index():
     return render_template("index.html")
-    # return render_template("index.html", title="Pt2 - Index")
 
-@app.route("/apis/")
+@app.route("/apis")
 def apis():
-    return render_template("apis.html", title="Pt2 - APIs")
+    return render_template("apis.html")
 
-@app.route("/plots/")
+@app.route("/plots")
 def plots():
-    return render_template("plots.html", title="Pt2 - Plots")
+    plot_url = demo_plot()
+    return render_template("plots.html", grafic=plot_url)
 
-@app.route("/maps/")
+@app.route("/maps")
 def maps():
-    return render_template("maps.html", title="Pt2 - Map")
+    return render_template("maps.html")
 
 # PLOTS
 
-@app.route('/map')
+@app.route('/map1')
 def notdash():
    df = pd.DataFrame({
       'Fruit': ['Apples', 'Oranges', 'Bananas', 'Apples', 'Oranges', 'Bananas'],
@@ -80,22 +79,11 @@ def notdash():
    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
    return render_template('notdash.html', graphJSON=graphJSON)
 
+# Demo plot.
+
 @app.route('/seaborn')
 def seaborn():
-    '''Carrega un gràfic dels viatgers del Titanic de cada classe (1,2,3)'''
-    titanic_df = sns.load_dataset("titanic")
-    print(titanic_df.head())
-    # Another way to visualize the data is to use FacetGrid to plot multiple kedplots on one plot
-    fig = sns.FacetGrid(titanic_df, hue="sex", aspect=4)
-    fig.map(sns.kdeplot, 'age', fill=True)
-    oldest = titanic_df['age'].max()
-    fig.set(xlim=(0, oldest))
-    fig.add_legend()
-    img = BytesIO()
-    plt.savefig(img, format='png')
-    plt.close()
-    img.seek(0)
-    plot_url = base64.b64encode(img.getvalue()).decode('utf8')
+    plot_url = demo_plot()
     return render_template('seaborn.html', grafic=plot_url)
 
 # MAIN
