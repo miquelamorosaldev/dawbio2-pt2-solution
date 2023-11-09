@@ -7,7 +7,7 @@ import plotly.express as px
 import json
 # Our modules.
 import data
-from mod_plots import demo_plot
+from mod_plots import demo_plot, plot1
 
 app = Flask(__name__)
 api = Api(app)
@@ -15,7 +15,6 @@ api = Api(app)
 df = data.df
 
 # WEB SERVICES 
-
 class PersonResource(Resource):
 
     def get(self, id):
@@ -29,6 +28,7 @@ class PersonResource(Resource):
 
 api.add_resource(PersonResource, "/patient/<id>")
 
+
 @app.route("/patient")
 def patients():
     print("Hey!")
@@ -36,6 +36,7 @@ def patients():
     return Response(
         data.to_json(orient="records"),
         mimetype='application/json')
+
 
 @app.route("/patient/<field>/<value>")
 def query(field, value):
@@ -48,23 +49,24 @@ def query(field, value):
 
     data = data.to_json(orient="records")
 
+
 # WEB PAGE ROUTES
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html",title="Dataset Description")
 
 @app.route("/apis")
 def apis():
-    return render_template("apis.html")
+    return render_template("apis.html",title="API Methods")
 
 @app.route("/plots")
 def plots():
-    plot_url = demo_plot()
-    return render_template("plots.html", grafic=plot_url)
+    plot_url = plot1(df)
+    return render_template("plots.html",title="Stats and plots",grafic=plot_url)
 
 @app.route("/maps")
 def maps():
-    return render_template("maps.html")
+    return render_template("maps.html",title="Maps")
 
 # PLOTS
 

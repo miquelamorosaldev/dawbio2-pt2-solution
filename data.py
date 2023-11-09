@@ -9,7 +9,7 @@ if not os.path.isfile(filepath):
     urlretrieve(url, filepath)
 
 df = pd.read_csv(filepath)
-# print(df.iloc[0])
+print(df.iloc[0])
 
 """
 data = df[df["Age"] == 30]

@@ -26,3 +26,13 @@ Open a terminal and get IP addr:
 
 $ ip --brief addr
 Fire up a web browser and navigate to http://<ip>:5000
+
+### Dataset source
+
+<a href="https://www.kaggle.com/datasets/iamsouravbanerjee/heart-attack-prediction-dataset/">🌍 Original source and examples, Kaggle website.🌍</a>
+
+#### Columns
+
+Patient ID,Age,Sex,Cholesterol,Blood Pressure,Heart Rate,Diabetes,Family History,Smoking,Obesity,Alcohol Consumption,Exercise Hours Per Week,Diet,Previous Heart Problems,Medication Use,Stress Level,Sedentary Hours Per Day,Income,BMI,Triglycerides,Physical Activity Days Per Week,Sleep Hours Per Day,Country,Continent,Hemisphere,Heart Attack Risk
+
+
