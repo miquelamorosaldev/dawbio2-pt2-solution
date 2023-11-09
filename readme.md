@@ -1,5 +1,10 @@
 ## Flask, Pandas and plots project.
 
+Aquest projecte inclou com carregar dataframes (Pandas), serveis web (Flask, request), gràfics amb llibreries (Seaborn, Plotly) i plantilles 
+Jinja per tal de tenir una base per crear un porta de dades obertes atractiu.
+
+Li faltarien mecanismes com els formularis, la gestió d'usuaris i sessions securitzades per a ser una plantilla per a projectes de DAWBIO completa.
+
 ### Install venv environment.
 
 ```bash
