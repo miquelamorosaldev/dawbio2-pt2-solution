@@ -7,7 +7,7 @@ import plotly.express as px
 import json
 # Our modules.
 import data
-from mod_plots import demo_plot, plot1
+from mod_plots import *
 
 app = Flask(__name__)
 api = Api(app)
@@ -43,30 +43,35 @@ def query(field, value):
     if field == "Age":
         value = int(value)
 
+    print('value=',value)
     data = df[df[field] == value]
     if data.empty:
         return {"error": "no data found", "field": field, "value": value}, 404
 
-    data = data.to_json(orient="records")
+    # data = data.to_json(orient="records")
+    return Response(
+        data.to_json(orient="records"),
+        mimetype='application/json')
 
 
 # WEB PAGE ROUTES
 @app.route("/")
 def index():
-    return render_template("index.html",title="Dataset Description")
+    return render_template("index.html",title="Pt2-Landing page")
 
 @app.route("/apis")
 def apis():
-    return render_template("apis.html",title="API Methods")
+    return render_template("apis.html",title="Pt2-APIs")
 
 @app.route("/plots")
 def plots():
-    plot_url = plot1(df)
-    return render_template("plots.html",title="Stats and plots",grafic=plot_url)
+    grafic1 = plot1(df)
+    grafic2 = plot2(df)
+    return render_template("plots.html",title="Pt2-Plots",grafic1=grafic1,grafic2=grafic2)
 
 @app.route("/maps")
 def maps():
-    return render_template("maps.html",title="Maps")
+    return render_template("maps.html",title="Pt2-Map")
 
 # PLOTS
 
@@ -81,15 +86,8 @@ def notdash():
    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
    return render_template('notdash.html', graphJSON=graphJSON)
 
-# Demo plot.
-
-@app.route('/seaborn')
-def seaborn():
-    plot_url = demo_plot()
-    return render_template('seaborn.html', grafic=plot_url)
-
 # MAIN
 
 if __name__ == "__main__":
-    # app.run()
-    app.run(debug=True)
+    app.run()
+    # app.run(debug=True)
