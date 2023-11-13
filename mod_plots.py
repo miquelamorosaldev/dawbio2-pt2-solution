@@ -71,3 +71,39 @@ def plot2(df):
     # df['Diet'].value_counts().plot.pie(autopct='%1.1f%%', startangle=90)
     # plt.title('Distribució de tipus de dieta')
     # pie_chart_base64 = plot_to_base64(pie_chart)
+
+
+def map1(df):
+    '''Gràfic mapa.'''
+    # Primer, agrupar casos per països.Country
+   
+    # Compta el nombre total de pacients per cada país
+    total_pacients_per_pais = df.groupby('Country')['Heart Attack Risk'].count().reset_index(name='Total Patients')
+
+    # Filtra les files amb Heart Attack Risk igual a 1
+    df_risc_atac = df[df['Heart Attack Risk'] == 1]
+
+    # Compte el nombre de pacients amb risc d'atac al cor per cada país
+    pacients_risc_atac_per_pais = df_risc_atac.groupby('Country')['Heart Attack Risk'].count().reset_index(name='Patients with Heart Attack Risk 1')
+
+    # Combina els dos DataFrames per obtenir el percentatge
+    resultat = pd.merge(total_pacients_per_pais, pacients_risc_atac_per_pais, on='Country', how='left')
+
+    # Calcula el percentatge i crea una nova columna
+    resultat['Percentatge of Patients with Heart Attack Risk 1'] = (resultat['Patients with Heart Attack Risk 1'] / resultat['Total Patients']) * 100
+
+    # print(resultat)
+
+    # Crea el mapa de cloropets
+    fig = px.choropleth(resultat,
+                        locations='Country',  # Nom del país
+                        locationmode='country names',  # Mode de localització per noms de país [ISO-3, country names]
+                        hover_name='Percentatge of Patients with Heart Attack Risk 1',  # Informació que apareixerà en la caixa d'eines en fer hover
+                        color='Percentatge of Patients with Heart Attack Risk 1',  # Variable a representar amb colors
+                        color_continuous_scale=px.colors.sequential.Reds,
+                        title='Mapa percentatge pacients amb risc d\'atac de cor per país'
+                    )
+
+    # Mostra el mapa
+    fig.update_layout(margin=dict(l=20,r=0,b=0,t=70,pad=0),paper_bgcolor="white",height= 700,font_size=18)
+    return fig
