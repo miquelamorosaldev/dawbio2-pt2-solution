@@ -134,6 +134,7 @@ def index():
 def apis():
     return render_template("apis.html",title="Pt2-APIs")
 
+#PLOTS
 @app.route("/plots")
 def plots():
     grafic1 = plot1(df)
@@ -145,20 +146,7 @@ def maps():
     fig = map1(df)
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     return render_template("maps.html",title="Pt2-Map", graphJSON=graphJSON)
-
-# PLOTS
-
-@app.route('/map1')
-def notdash():
-   df = pd.DataFrame({
-      'Fruit': ['Apples', 'Oranges', 'Bananas', 'Apples', 'Oranges', 'Bananas'],
-      'Amount': [4, 1, 2, 2, 4, 5],
-      'City': ['SF', 'SF', 'SF', 'Montreal', 'Montreal', 'Montreal']
-   })
-   fig = px.bar(df, x='Fruit', y='Amount', color='City',    barmode='group')
-   graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-   return render_template('notdash.html', graphJSON=graphJSON)
-
+    
 # MAIN
 
 if __name__ == "__main__":
